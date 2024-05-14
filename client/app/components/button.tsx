@@ -6,7 +6,6 @@ export default function Button({ ...props }) {
             className='bg-blue-500 p-2 rounded-xl transition ease-in-out duration-200 hover:bg-blue-600'
             onClick={props.onClick}
             disabled={props.disabled}
-            type={props.type}
         >
             {props.name ? props.name : props.icon ? 
                 <Image 
