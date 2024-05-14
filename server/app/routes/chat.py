@@ -14,7 +14,6 @@ async def create_post(chat: ChatRequest):
         text_complexity = analyse_text(message)
 
         model_used = settings.OPEN_AI_MODEL_35 if text_complexity == 'simple' else settings.OPEN_AI_MODEL_4
-        print(model_used)
 
         completion = open_ai_client.chat.completions.create(
             model=model_used,

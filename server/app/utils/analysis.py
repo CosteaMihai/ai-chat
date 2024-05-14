@@ -24,9 +24,6 @@ def analyse_text(text: str):
         'certainty': '',
     }
 
-    print(text)
-    print(deltas_average, deltas, stats, stats_average)
-
     if deltas_average <= 2:
         analysis['certainty'] = 'certain'
     elif deltas_average > 2 and deltas_average < 4:

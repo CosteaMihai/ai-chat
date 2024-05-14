@@ -24,7 +24,9 @@ export default function Home() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }
 
-    async function sendMessage() {
+    async function sendMessage(event: any) {
+        event.preventDefault();
+
         if(!formData.message) {
             return;
         }
@@ -39,6 +41,16 @@ export default function Home() {
         }
     }
 
+    function handleKeyDown(event: any) {
+        if (event.key === 'Enter' && !event.shiftKey && !event.altKey && !event.ctrlKey) {
+            if(chat.some((item: ChatItem) => item.isLoading)) {
+                return;
+            }
+
+            sendMessage(event); 
+        }
+    }
+
     return (
         <main className='flex min-h-screen flex-col items-center justify-between px-10 pt-10'>
             <div className="w-full">
@@ -47,7 +59,7 @@ export default function Home() {
 
             <div className="w-full sticky bottom-0 pb-10 bg-white">                
                 <div className="relative">
-                    <Textarea name='message' placeholder='Message to Open AI' value={formData.message} onChange={onChange}></Textarea>
+                    <Textarea name='message' placeholder='Message to Open AI' value={formData.message} onChange={onChange} onKeyDown={handleKeyDown}></Textarea>
 
                     <div className="absolute top-[calc(50%-20px)] right-3">
                         <Button icon={sendSvg} onClick={sendMessage} disabled={chat.some((item: ChatItem) => item.isLoading)}></Button>

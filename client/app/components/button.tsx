@@ -1,11 +1,12 @@
 import Image from 'next/image';
 
-export default function Input({ ...props }) {
+export default function Button({ ...props }) {
     return (
         <button
-            className="bg-blue-500 p-2 rounded-xl transition ease-in-out duration-200 hover:bg-blue-600"
+            className='bg-blue-500 p-2 rounded-xl transition ease-in-out duration-200 hover:bg-blue-600'
             onClick={props.onClick}
             disabled={props.disabled}
+            type={props.type}
         >
             {props.name ? props.name : props.icon ? 
                 <Image 
