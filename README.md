@@ -1,38 +1,35 @@
-Project Name
-Description
-This project represents an AI portal for comunicationg with an artificial inteligence model. It was developed using FastAPI on backend and Next.js 14 on frontend, for comunication between the AI model and the backend Azure Open AI client was used.
+## AI Chat
 
-Features
-List key features of your project, both on the backend and frontend.
-Highlight any unique or noteworthy functionalities.
-Technologies Used
-Backend
-[List of backend technologies/libraries/frameworks used]
-Frontend
-[List of frontend technologies/libraries/frameworks used]
-Installation
-Backend
-[Instructions for installing and setting up the backend]
-[Any dependencies that need to be installed]
-Frontend
-[Instructions for installing and setting up the frontend]
-[Any dependencies that need to be installed]
-Usage
-[Instructions for running the backend server]
-[Instructions for running the frontend application]
-[Any additional information on how to use the project]
-Contributing
-Fork the repository
-Create a new branch (git checkout -b feature/feature-name)
-Make your changes
-Commit your changes (git commit -am 'Add some feature')
-Push to the branch (git push origin feature/feature-name)
-Create a new Pull Request
-License
-[Include license information, if applicable]
+### Description
 
-Acknowledgements
-[List any acknowledgements or credits for third-party resources or contributions]
+This project serves as an AI portal facilitating communication with an artificial intelligence model. Built with FastAPI on the backend and Next.js 14 on the frontend, it leverages the Azure Open AI client for seamless interaction between the AI model and the backend infrastructure.
 
-Contact
-[Provide contact information if users have questions or feedback]
+### Heading2 Selection AI model algorithm
+
+This application implements an algorithm to select the appropriate AI model based on the complexity of a given phrase. The algorithm utilizes the textstat package for analyzing sentences, which provides methods for calculating various statistics from texts.
+
+#### Implemented Methods
+
+1. **Flesch-Kincaid Grade:** Indicates the readability level of a text.
+2. **Gunning Fog:** Estimates the readability of a text by determining the number of years of formal education needed to understand it.
+3. **Dale-Chall Readability Score:** Assesses the readability of a text based on a list of familiar words considered easy to understand.
+4. **Automated Readability Index:** Assesses readability by considering the average sentence length and average number of characters per word.
+5. **Coleman-Liau Index:** Considers the average number of letters per 100 words and the average number of sentences per 100 words.
+
+#### Algorithm Overview
+
+1. Calculate the average of the scores provided by the above methods.
+2. Compute the deviation between the average and every score.
+3. Calculate the average deviation.
+4. Determine the certainty level:
+   - If the average deviation is small (e.g., less than 2), it indicates that the scores are close to each other, implying certainty about the complexity of the sentence.
+   - If the average deviation falls within a certain range, indicating uncertainty, additional steps are taken.
+   - Search for a majority of deviations smaller than the average deviation to mitigate errors introduced by textstat methods. For example, if three or more deviations are smaller than the average deviation, consider them a majority, implying certainty about the complexity.
+   - If the deviation is too large, indicating significant uncertainty, the algorithm cannot determine the complexity of the sentence.
+5. Based on certainty level and average scores the complexity of the sentence will be determed as follows:
+    - If the average score is over 8 and certainty level is certain, the algoritm will consider the sentence complex otherwise it will be simple
+    - If the average score is over 5 and certainty level is uncertain, the algoritm will consider the sentence complex otherwise it will be simple
+    - In instances of uncertainty, the algorithm sets a lower threshold score to mitigate risk, ensuring that it avoids utilizing a less potent AI model
+
+
+
