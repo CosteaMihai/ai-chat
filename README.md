@@ -4,7 +4,7 @@
 
 This project serves as an AI portal facilitating communication with an artificial intelligence model. Built with FastAPI on the backend and Next.js 14 on the frontend, it leverages the Azure Open AI client for seamless interaction between the AI model and the backend infrastructure.
 
-### Heading2 Selection AI model algorithm
+### Selection AI model algorithm
 
 This application implements an algorithm to select the appropriate AI model based on the complexity of a given phrase. The algorithm utilizes the textstat package for analyzing sentences, which provides methods for calculating various statistics from texts.
 
@@ -30,6 +30,61 @@ This application implements an algorithm to select the appropriate AI model base
     - If the average score is over 8 and certainty level is certain, the algoritm will consider the sentence complex otherwise it will be simple
     - If the average score is over 5 and certainty level is uncertain, the algoritm will consider the sentence complex otherwise it will be simple
     - In instances of uncertainty, the algorithm sets a lower threshold score to mitigate risk, ensuring that it avoids utilizing a less potent AI model
+
+### Technologies
+
+#### Frontend
+- Next.js
+- TypeSctipt
+- Tailwind
+- Redux
+- Axios
+
+#### Backend
+- FastAPI
+- Openai
+- Textstat
+- Uvicorn
+
+### Get the project
+Clone the repository
+
+```
+git clone https://github.com/CosteaMihai/ai-chat.git
+```
+
+### Run the project
+
+#### Docker
+You should install Docker. In the ai chat folder run the folowing commands:
+
+```
+docker compose build
+docker compose up -d
+```
+
+#### Installing dependencies
+
+##### Frontend
+You should have Node.js installed and in the client folder run the following commands
+
+```
+npm install
+npm run dev
+```
+
+##### Backend
+You should have Python3 installed and in the server folder run the following commands
+
+```
+python -m venv env
+env/Scripts/activate
+pip install -r requirements.txt 
+uvicorn app.main:app --reload
+```
+
+### Open the project
+Client should run on [loc](http://localhost:3000/) and the server on [loc](http://localhost:8000/)
 
 
 
