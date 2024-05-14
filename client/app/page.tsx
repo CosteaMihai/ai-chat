@@ -24,7 +24,7 @@ export default function Home() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }
 
-    async function sendMessage(event: any) {
+    function sendMessage(event: any) {
         event.preventDefault();
 
         if(!formData.message) {
@@ -33,12 +33,10 @@ export default function Home() {
         
         store.dispatch(addMessageToChat({ content: formData.message, role: 'user', isLoading: false, isError: false }))
         store.dispatch(addMessageToChat({ content: '', role: 'assistant', isLoading: true, isError: false }))
+        
+        sendMessageToAI(store)
 
-        const response = await sendMessageToAI(store)
-
-        if(response?.status === 201) {
-            setFormData({ message: '' });
-        }
+        setFormData({ message: '' });
     }
 
     function handleKeyDown(event: any) {
