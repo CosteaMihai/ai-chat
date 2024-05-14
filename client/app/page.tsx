@@ -25,6 +25,10 @@ export default function Home() {
     }
 
     async function sendMessage() {
+        if(!formData.message) {
+            return;
+        }
+        
         store.dispatch(addMessageToChat({ content: formData.message, role: 'user', isLoading: false, isError: false }))
         store.dispatch(addMessageToChat({ content: '', role: 'assistant', isLoading: true, isError: false }))
 

@@ -1,0 +1,29 @@
+services:
+  client: 
+    container_name: client
+    image: client:1.0.0
+    build:
+      context: ./client
+      dockerfile: DockerFile
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:8000/
+    depends_on:
+      - server
+
+  server: 
+    container_name: server
+    image: server:1.0.0
+    build: 
+      context: ./server
+      dockerfile: DockerFile
+    ports: 
+      - 8000:8000
+    environment:
+      - OPEN_AI_ENDPOINT=https://coding-assignment-2.openai.azure.com/
+      - OPEN_AI_KEY=5afcb4386cae4087aeadb6cd55ba901b
+      - OPEN_AI_MODEL_35=gpt-35-turbo
+      - OPEN_AI_MODEL_4=gpt-4-turbo
+      - OPEN_AI_API_VERSION=2024-02-01
+      - BACKEND_CORS_ORIGINS=*
