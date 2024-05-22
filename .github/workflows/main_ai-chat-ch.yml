@@ -49,7 +49,7 @@ jobs:
     name: Server deploy
 
     runs-on: ubuntu-latest
-    depends: server_build
+    needs: server_build
   
     environment:
       name: 'Production'
