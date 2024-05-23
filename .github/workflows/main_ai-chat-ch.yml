@@ -136,7 +136,7 @@ jobs:
         with:
           app-name: 'ai-chat-frontend'
           slot-name: 'production'
-          package: ./build/standalone
+          package: .
 
 
 

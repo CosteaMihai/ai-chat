@@ -1,1 +1,1 @@
-node ./build/server.js
+node ./build/standalone/server.js
