@@ -1,8 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
-
-name: Build and deploy Python app to Azure Web App - ai-chat-ch
+name: Build and deploy AI Chat
 
 on:
   push:
@@ -74,6 +70,30 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'ai-chat-ch'
-          slot-name: 'Production'            
+          slot-name: 'Production'   
+
+  client:
+    name: Client build and deploy
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_DUNE_00354EC03 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "./client"
+          api_location: ""
+          output_location: ""
+          api_build_command: 'npm run build'
+        env: 
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}         
 
             
