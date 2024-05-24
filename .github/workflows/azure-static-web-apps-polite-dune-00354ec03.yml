@@ -30,8 +30,8 @@ jobs:
           api_location: ""
           output_location: ""
           api_build_command: 'npm run build'
-        # env: 
-        #   NEXT_PUBLIC_SERVER_URL: https://ai-chat-ch.azurewebsites.net/
+        env: 
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
