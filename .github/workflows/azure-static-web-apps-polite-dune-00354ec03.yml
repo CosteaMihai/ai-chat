@@ -28,9 +28,10 @@ jobs:
           action: "upload"
           app_location: "./client"
           api_location: ""
-          output_location: "out"
-        env: # Add environment variables here
-          IS_STATIC_EXPORT: true
+          output_location: ""
+          api_build_command: 'npm run build'
+        env: 
+          NEXT_PUBLIC_SERVER_URL: https://ai-chat-ch.azurewebsites.net/
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
